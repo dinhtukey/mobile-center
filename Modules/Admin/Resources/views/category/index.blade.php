@@ -62,9 +62,9 @@
                                                 <td>{{$category->cate_title_seo}}</td>
                                                 <?php
                                                     if($category->cate_active==0){
-                                                        echo '<td>Ẩn</td>';
+                                                        echo '<td>Private</td>';
                                                     }else{
-                                                        echo '<td>Hiện</td>';
+                                                        echo '<td>Public</td>';
                                                     }
                                                 ?>
                                                 <td>

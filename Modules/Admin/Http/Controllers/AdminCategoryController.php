@@ -52,6 +52,11 @@ class AdminCategoryController extends Controller
         $category->save();
         return redirect('admin/category')->with('success','Sửa danh mục thành công');
     }
+
+    public function getDelete($id){
+        Category::destroy($id);
+        return back()->with('success','Xóa danh mục thành công');
+    }
 }
 
 

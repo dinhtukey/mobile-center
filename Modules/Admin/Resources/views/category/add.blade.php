@@ -51,8 +51,8 @@
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <select required name="cate_active" id="select" class="form-control">
-                                                        <option value="1">Hiện</option>
-                                                        <option value="0">Ẩn</option>
+                                                        <option value="1">Public</option>
+                                                        <option value="0">Private</option>
                                                     </select>
                                                 </div>
                                             </div>

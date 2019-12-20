@@ -54,13 +54,13 @@
                                                         <?php
                                                             if($category->cate_active==1){
                                                         ?>
-                                                        <option selected value="1">Hiện</option>
-                                                        <option value="0">Ẩn</option>
+                                                        <option selected value="1">Public</option>
+                                                        <option value="0">Private</option>
                                                         <?php
                                                             }else{
                                                         ?>
-                                                        <option value="1">Hiện</option>
-                                                        <option selected value="0">Ẩn</option>
+                                                        <option value="1">Public</option>
+                                                        <option selected value="0">Private</option>
                                                         <?php
                                                             }
                                                         ?>
