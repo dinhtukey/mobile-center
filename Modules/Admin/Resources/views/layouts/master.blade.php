@@ -177,7 +177,7 @@
                                     <a href="{{asset('/admin/brand/add')}}">Thêm thương hiệu</a>
                                 </li>
                                 <li>
-                                    <a href="{{asset('/admin/brand/list')}}">Danh sách thương hiệu</a>
+                                    <a href="{{asset('/admin/brand')}}">Danh sách thương hiệu</a>
                                 </li>
                             </ul>
                         </li>

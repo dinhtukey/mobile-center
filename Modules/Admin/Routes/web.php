@@ -24,4 +24,26 @@ Route::prefix('admin')->group(function() {
 
         Route::get('/delete/{id}','AdminCategoryController@getDelete');
     });
+
+    Route::group(['prefix' => 'brand'],function(){
+        Route::get('/','AdminBrandController@index');
+        Route::get('/add','AdminBrandController@getAdd');
+        Route::post('/add','AdminBrandController@postAdd');
+
+        Route::get('/edit/{id}','AdminBrandController@getEdit');
+        Route::post('/edit/{id}','AdminBrandController@postEdit');
+
+        Route::get('/delete/{id}','AdminBrandController@getDelete');
+    });
+
+    Route::group(['prefix' => 'product'],function(){
+        Route::get('/','AdminProductController@index');
+        Route::get('/add','AdminProductController@getAdd');
+        Route::post('/add','AdminProductController@postAdd');
+
+        Route::get('/edit/{id}','AdminProductController@getEdit');
+        Route::post('/edit/{id}','AdminProductController@postEdit');
+
+        Route::get('/delete/{id}','AdminProductController@getDelete');
+    });
 });
