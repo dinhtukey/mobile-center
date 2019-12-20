@@ -42,6 +42,7 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive table-responsive-data2">
+                                @include('admin::notifi.note')
                                     <table class="table table-data2">
                                         <thead>
                                             <tr>
@@ -68,18 +69,19 @@
                                                 ?>
                                                 <td>
                                                     <div class="table-data-feature">
-                                                        <a href="#" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                        <a href="{{asset('/admin/category/edit/'.$category->cate_id)}}" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                             <i class="zmdi zmdi-edit"></i>
                                                         </a>
-                                                        <a href="#" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                        <a href="{{asset('/admin/category/delete/'.$category->cate_id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                             <i class="zmdi zmdi-delete"></i>
                                                         </a>
                                                     </div>
                                                 </td>
                                             </tr>
+                                            <tr class="spacer"></tr>
                                             @endforeach
                                             @endif
-                                            <tr class="spacer"></tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>

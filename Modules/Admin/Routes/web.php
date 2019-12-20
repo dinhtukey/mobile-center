@@ -18,5 +18,8 @@ Route::prefix('admin')->group(function() {
         Route::get('/','AdminCategoryController@index');
         Route::get('/add','AdminCategoryController@getAdd');
         Route::post('/add','AdminCategoryController@postAdd');
+
+        Route::get('/edit/{id}','AdminCategoryController@getEdit');
+        Route::post('/edit/{id}','AdminCategoryController@postEdit');
     });
 });

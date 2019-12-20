@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RequestCategory extends FormRequest
+class AddCateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,13 @@ class RequestCategory extends FormRequest
     public function rules()
     {
         return [
-            'cate_name' => 'required',
-            'cate_icon' => 'required',
-            'cate_active' => 'required',
+            'cate_name' => 'unique:categories,cate_name'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'cate_name.unique' => 'Tên danh mục bị trùng!'
         ];
     }
 }
