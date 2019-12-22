@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('admin::layouts.master')
 @section('title','Danh sách sản phẩm')
 @section('content')
 <div class="section__content section__content--p30">
@@ -41,7 +41,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @include('notifi.note')
+                                @include('admin::notifi.note')
                                 <div class="table-responsive table-responsive-data2">
                                 <table class="table table-data2">
                                         <thead>
@@ -50,6 +50,8 @@
                                                 <th>Tên sản phẩm</th>
                                                 <th>Giá sản phẩm</th>
                                                 <th>Ảnh sản phẩm</th>
+                                                <th>Trạng thái</th>
+                                                <th>Nổi bật</th>
                                                 <th>Danh mục</th>
                                                 <th>Thương hiệu</th>
                                                 <th></th>
@@ -57,23 +59,31 @@
                                         </thead>
                                         <tbody>
                                             <?php $i=0; ?>
-                                            @foreach($productList as $product)
+                                            @foreach($prodList as $prod)
                                             <?php $i++; ?>
                                             <tr class="tr-shadow">
                                                 <td><?php echo $i ?></td>
-                                                <td>{{$product->product_name}}</td>
-                                                <td>{{number_format($product->product_price,0,',','.')}} VND</td>
+                                                <td>{{$prod->prod_name}}</td>
+                                                <td>{{number_format($prod->prod_price,0,',','.')}} VND</td>
                                                 <td>
-												    <img height="100px" src="{{asset('storage/app/avatar/'.$product->product_img)}}">
-											    </td>
-                                                <td>{{$product->category_name}}</td>
-                                                <td>{{$product->brand_name}}</td>
+												    <img height="100px" src="{{asset('storage/app/avatar/'.$prod->prod_img)}}">
+                                                </td>
+                                                <td>
+                                                    <a href="" class="badge {{$prod->getStatus($prod->prod_active)['class']}}">{{$prod->getStatus($prod->prod_active)['name']}}
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="" class="badge {{$prod->getFeatured($prod->prod_featured)['class']}}">{{$prod->getFeatured($prod->prod_featured)['name']}}
+                                                    </a>
+                                                </td>
+                                                <td>{{isset($prod->category->cate_name) ? $prod->category->cate_name : '[N\A]' }}</td>
+                                                <td>{{isset($prod->brand->brand_name) ? $prod->brand->brand_name : ['N\A']}}</td>
                                                 <td>
                                                     <div class="table-data-feature">
-                                                        <a href="{{asset('/admin/product/edit/'.$product->product_id)}}" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                        <a href="{{asset('/admin/product/edit/'.$prod->prod_id)}}" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                             <i class="zmdi zmdi-edit"></i>
                                                         </a>
-                                                        <a href="{{asset('/admin/product/delete/'.$product->product_id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                        <a href="{{asset('/admin/product/delete/'.$prod->prod_id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                             <i class="zmdi zmdi-delete"></i>
                                                         </a>
                                                     </div>

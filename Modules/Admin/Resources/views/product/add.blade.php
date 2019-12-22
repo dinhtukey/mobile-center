@@ -12,13 +12,14 @@
                                         <strong>Thêm sản phẩm</strong>
                                     </div>
                                     <div class="card-body card-block">
-                                        <form action="{{asset('/admin/product/add')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                    @include('admin::notifi.note')
+                                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label for="text-input" class=" form-control-label">Tên sản phẩm</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input required type="text" id="text-input" name="product_name" placeholder="Vd: iPhone 11" class="form-control">
+                                                    <input required type="text" id="text-input" name="prod_name" placeholder="Vd: iPhone 11" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="row form-group">
@@ -26,7 +27,7 @@
                                                     <label for="email-input" class=" form-control-label">Giá sản phẩm</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input required type="number" id="email-input" name="product_price" class="form-control">
+                                                    <input required type="number" id="email-input" name="prod_price" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="row form-group" >
@@ -34,7 +35,7 @@
                                                     <label for="email-input" class=" form-control-label">Ảnh sản phẩm</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input required id="img" type="file" name="product_img" class="form-control hidden" onchange="changeImg(this)">
+                                                    <input required id="img" type="file" name="prod_img" class="form-control hidden" onchange="changeImg(this)">
                                                     <img id="avatar" class="thumbnail" width="200px" src="images/bg-title-01.jpg">
                                                 </div>
                                             </div>
@@ -43,7 +44,7 @@
                                                     <label for="password-input" class=" form-control-label">Phụ kiện</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input required type="text" id="password-input" name="product_accessories" class="form-control">
+                                                    <input required type="text" id="password-input" name="prod_accessories" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="row form-group">
@@ -51,7 +52,7 @@
                                                     <label for="password-input" class=" form-control-label">Bảo hành</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input required type="text" id="password-input" name="product_warranty" class="form-control">
+                                                    <input required type="text" id="password-input" name="prod_warranty" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="row form-group">
@@ -59,7 +60,7 @@
                                                     <label for="password-input" class=" form-control-label">Khuyến mãi</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input required type="text" id="password-input" name="product_promotion" class="form-control">
+                                                    <input required type="text" id="password-input" name="prod_promotion" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="row form-group">
@@ -67,7 +68,7 @@
                                                     <label for="password-input" class=" form-control-label">Tình trạng</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input required type="text" id="password-input" name="product_condition" class="form-control">
+                                                    <input required type="text" id="password-input" name="prod_condition" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="row form-group">
@@ -75,10 +76,10 @@
                                                     <label for="select" class=" form-control-label">Trạng thái</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <select required name="product_status" id="select" class="form-control">
+                                                    <select required name="prod_active" id="select" class="form-control">
                                                         <option value="">Tùy chọn</option>
-                                                        <option value="1">Còn hàng</option>
-                                                        <option value="0">Hết hàng</option>
+                                                        <option value="1">Public</option>
+                                                        <option value="0">Private</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -87,9 +88,9 @@
                                                     <label for="textarea-input" class=" form-control-label">Miêu tả</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <textarea required class="ckeditor" name="product_description"></textarea>
+                                                    <textarea required class="ckeditor" name="prod_description"></textarea>
                                                     <script type="text/javascript">
-                                                      var editor = CKEDITOR.replace('product_description',{
+                                                      var editor = CKEDITOR.replace('prod_description',{
                                                         language:'vi',
                                                         filebrowserImageBrowseUrl: '../editor/ckfinder/ckfinder.html?Type=Images',
                                                         filebrowserFlashBrowseUrl: '../editor/ckfinder/ckfinder.html?Type=Flash',
@@ -99,15 +100,49 @@
                                                     </script>
                                                 </div>
                                             </div>
-										
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="textarea-input" class=" form-control-label">Nội dung</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <textarea required class="ckeditor" name="prod_content"></textarea>
+                                                    <script type="text/javascript">
+                                                      var editor = CKEDITOR.replace('prod_content',{
+                                                        language:'vi',
+                                                        filebrowserImageBrowseUrl: '../editor/ckfinder/ckfinder.html?Type=Images',
+                                                        filebrowserFlashBrowseUrl: '../editor/ckfinder/ckfinder.html?Type=Flash',
+                                                        filebrowserImageUploadUrl: '../editor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                                                        filebrowserFlashUploadUrl: '../editor/public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+                                                    });
+                                                    </script>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class=" form-control-label">Meta Title</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="text" id="text-input" name="prod_title_seo" placeholder="Meta title" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class=" form-control-label">Meta Description</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="text" id="text-input" name="prod_description_seo" placeholder="Meta description" class="form-control">
+                                                </div>
+                                            </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label for="select" class=" form-control-label">Danh mục</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <select required name="product_cate" id="select" class="form-control">
+                                                    <select required name="prod_cate" id="select" class="form-control">
                                                         <option value="">Tùy chọn</option>
-                                                        
+                                                        @foreach($cateList as $cate)
+                                                        <option value="{{$cate->cate_id}}">{{$cate->cate_name}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -116,9 +151,11 @@
                                                     <label for="select" class=" form-control-label">Thương hiệu</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <select required name="product_brand" id="select" class="form-control">
+                                                    <select required name="prod_brand" id="select" class="form-control">
                                                         <option value="">Tùy chọn</option>
-                                                        
+                                                        @foreach($brandList as $brand)
+                                                        <option value="{{$brand->brand_id}}">{{$brand->brand_name}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -131,12 +168,12 @@
                                                     <div class="form-check">
                                                         <div class="radio">
                                                             <label for="radio1" class="form-check-label ">
-                                                                <input checked type="radio" id="radio1" name="product_featured" value="1" class="form-check-input">Có
+                                                                <input checked type="radio" id="radio1" name="prod_featured" value="1" class="form-check-input">Có
                                                             </label>
                                                         </div>
                                                         <div class="radio">
                                                             <label for="radio2" class="form-check-label ">
-                                                                <input type="radio" id="radio2" name="product_featured" value="0" class="form-check-input">Không
+                                                                <input type="radio" id="radio2" name="prod_featured" value="0" class="form-check-input">Không
                                                             </label>
                                                         </div>
                                                     </div>

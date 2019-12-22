@@ -146,26 +146,26 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="{{asset('admin/dashboard')}}">
+                <a href="{{route('admin.home')}}">
                     <img src="images/icon/logo.png" alt="Cool Admin" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li class="active has-sub">
-                            <a class="js-arrow" href="{{asset('/admin/dashboard')}}">
+                        <li class="{{\Request::route()->getName() == 'admin.home' ? 'active' : ''}}">
+                            <a href="{{route('admin.home')}}">
                                 <i class="fas fa-tachometer-alt"></i>Tổng quan</a>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-copy"></i>Danh mục sản phẩm</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="{{asset('/admin/category/add')}}">Thêm danh mục</a>
+                                <li class="{{\Request::route()->getName() == 'admin.category.add' ? 'active' : ''}}">
+                                    <a href="{{route('admin.category.add')}}">Thêm danh mục</a>
                                 </li>
-                                <li>
-                                    <a href="{{asset('/admin/category')}}">Danh sách danh mục</a>
+                                <li class="{{\Request::route()->getName() == 'admin.category.list' ? 'active' : ''}}">
+                                    <a href="{{route('admin.category.list')}}">Danh sách danh mục</a>
                                 </li>
                             </ul>
                         </li>
@@ -173,11 +173,11 @@
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-copy"></i>Thương hiệu sản phẩm</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="{{asset('/admin/brand/add')}}">Thêm thương hiệu</a>
+                                <li class="{{\Request::route()->getName() == 'admin.brand.add' ? 'active' : ''}}">
+                                    <a href="{{route('admin.brand.add')}}">Thêm thương hiệu</a>
                                 </li>
-                                <li>
-                                    <a href="{{asset('/admin/brand')}}">Danh sách thương hiệu</a>
+                                <li class="{{\Request::route()->getName() == 'admin.brand.list' ? 'active' : ''}}">
+                                    <a href="{{route('admin.brand.list')}}">Danh sách thương hiệu</a>
                                 </li>
                             </ul>
                         </li>
@@ -185,11 +185,11 @@
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-copy"></i>Sản phẩm</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="{{asset('/admin/product/add')}}">Thêm sản phẩm</a>
+                                <li class="{{\Request::route()->getName() == 'admin.product.add' ? 'active' : ''}}">
+                                    <a href="{{route('admin.product.add')}}">Thêm sản phẩm</a>
                                 </li>
-                                <li>
-                                    <a href="{{asset('/admin/product/list')}}">Danh sách sản phẩm</a>
+                                <li class="{{\Request::route()->getName() == 'admin.product.list' ? 'active' : ''}}">
+                                    <a href="{{route('admin.product.list')}}">Danh sách sản phẩm</a>
                                 </li>
                             </ul>
                         </li>

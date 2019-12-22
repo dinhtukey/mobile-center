@@ -12,38 +12,38 @@
 */
 
 Route::prefix('admin')->group(function() {
-    Route::get('/', 'AdminController@index');
+    Route::get('/', 'AdminController@index')->name('admin.home');
 
     Route::group(['prefix' => 'category'],function(){
-        Route::get('/','AdminCategoryController@index');
-        Route::get('/add','AdminCategoryController@getAdd');
+        Route::get('/','AdminCategoryController@index')->name('admin.category.list');
+        Route::get('/add','AdminCategoryController@getAdd')->name('admin.category.add');
         Route::post('/add','AdminCategoryController@postAdd');
 
-        Route::get('/edit/{id}','AdminCategoryController@getEdit');
+        Route::get('/edit/{id}','AdminCategoryController@getEdit')->name('admin.category.edit');
         Route::post('/edit/{id}','AdminCategoryController@postEdit');
 
-        Route::get('/delete/{id}','AdminCategoryController@getDelete');
+        Route::get('/delete/{id}','AdminCategoryController@getDelete')->name('admin.category.delete');
     });
 
     Route::group(['prefix' => 'brand'],function(){
-        Route::get('/','AdminBrandController@index');
-        Route::get('/add','AdminBrandController@getAdd');
+        Route::get('/','AdminBrandController@index')->name('admin.brand.list');
+        Route::get('/add','AdminBrandController@getAdd')->name('admin.brand.add');
         Route::post('/add','AdminBrandController@postAdd');
 
-        Route::get('/edit/{id}','AdminBrandController@getEdit');
+        Route::get('/edit/{id}','AdminBrandController@getEdit')->name('admin.brand.edit');
         Route::post('/edit/{id}','AdminBrandController@postEdit');
 
-        Route::get('/delete/{id}','AdminBrandController@getDelete');
+        Route::get('/delete/{id}','AdminBrandController@getDelete')->name('admin.brand.delete');
     });
 
     Route::group(['prefix' => 'product'],function(){
-        Route::get('/','AdminProductController@index');
-        Route::get('/add','AdminProductController@getAdd');
+        Route::get('/','AdminProductController@index')->name('admin.product.list');
+        Route::get('/add','AdminProductController@getAdd')->name('admin.product.add');
         Route::post('/add','AdminProductController@postAdd');
 
-        Route::get('/edit/{id}','AdminProductController@getEdit');
+        Route::get('/edit/{id}','AdminProductController@getEdit')->name('admin.product.edit');
         Route::post('/edit/{id}','AdminProductController@postEdit');
 
-        Route::get('/delete/{id}','AdminProductController@getDelete');
+        Route::get('/delete/{id}','AdminProductController@getDelete')->name('admin.product.delete');
     });
 });
