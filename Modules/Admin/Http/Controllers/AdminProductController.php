@@ -17,21 +17,38 @@ class AdminProductController extends Controller
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $product = Product::with('category:cate_id,cate_name')->with('brand:brand_id,brand_name')->paginate();
-        $data['prodList'] = Product::all();
-        return view('admin::product.index',$data);
+
+        $product = Product::with('category:cate_id,cate_name')->with('brand:brand_id,brand_name');
+
+        if ($request->name) {
+            $result = $request->name;
+            $result = str_replace('', '%', $result);
+            $product = $product->where('prod_name', 'like', '%' . $result . '%');
+        };
+        if ($request->prod_cate) {
+            $product = $product->where('prod_cate', $request->prod_cate);
+        }
+        $product = $product->orderByDesc('prod_id')->paginate(10);
+
+
+        $category = Category::all();
+        $data['prodList'] = $product;
+        $data['cateList'] = $category;
+        return view('admin::product.index', $data);
     }
-    public function getAdd(){
+    public function getAdd()
+    {
         $data['cateList'] = Category::all();
         $data['brandList'] = Brand::all();
-        return view('admin::product.add',$data);
+        return view('admin::product.add', $data);
     }
-    public function postAdd(AddProductRequest $request){
+    public function postAdd(AddProductRequest $request)
+    {
         $filename = $request->prod_img->getClientOriginalName();
         $product = new Product();
-        
+
         $product->prod_name = $request->prod_name;
         $product->prod_slug = str_slug($request->prod_name);
         $product->prod_img = $filename;
@@ -52,18 +69,20 @@ class AdminProductController extends Controller
         $product->prod_featured = $request->prod_featured;
 
         $product->save();
-        $request->prod_img->storeAs('avatar',$filename);
-        return back()->with('success','Thêm sản phẩm thành công');
+        $request->prod_img->storeAs('avatar', $filename);
+        return back()->with('success', 'Thêm sản phẩm thành công');
     }
-    public function getEdit($id){
+    public function getEdit($id)
+    {
         $data['product'] = Product::find($id);
         $data['cateList'] = Category::all();
         $data['brandList'] = Brand::all();
-        return view('admin::product.edit',$data);
+        return view('admin::product.edit', $data);
     }
-    public function postEdit($id,Request $request){
+    public function postEdit($id, Request $request)
+    {
         $product = new Product();
-        
+
         $arr['prod_name'] = $request->prod_name;
         $arr['prod_slug'] = str_slug($request->prod_name);
         $arr['prod_price'] = $request->prod_price;
@@ -81,18 +100,33 @@ class AdminProductController extends Controller
 
         $arr['prod_brand'] = $request->prod_brand;
         $arr['prod_featured'] = $request->prod_featured;
-        if($request->hasFile('prod_img')){
+        if ($request->hasFile('prod_img')) {
             $img = $request->prod_img->getClientOriginalName();
             $arr['prod_img'] = $img;
-            $request->prod_img->storeAs('avatar',$img);
+            $request->prod_img->storeAs('avatar', $img);
         }
 
-        $product::where('prod_id',$id)->update($arr);
-        return redirect('admin/product')->with('success','Sửa sản phẩm thành công');
+        $product::where('prod_id', $id)->update($arr);
+        return redirect('admin/product')->with('success', 'Sửa sản phẩm thành công');
     }
-    public function getDelete($id){
-        Product::destroy($id);
-        return back()->with('success','Xóa sản phẩm thành công');
+    public function getAction($action, $id)
+    {
+        if ($action) {
+            $product = Product::find($id);
+            switch ($action) {
+                case 'delete':
+                    Product::destroy($id);
+                    return back()->with('success', 'Xóa sản phẩm thành công');
+                    break;
+                case 'active':
+                    $product->prod_active = $product->prod_active ? 0 :1;
+                    break;
+                default:
+                    $product->prod_featured = $product->prod_featured ? 0 :1;
+                    break;
+            }
+            $product->save();
+        }
+        return back();
     }
 }
-
