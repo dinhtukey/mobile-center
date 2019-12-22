@@ -46,7 +46,7 @@
                                     <table class="table table-data2">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
+                                                <th>ID</th>
                                                 <th>Tên Thương hiệu</th>
                                                 <th>Title seo</th>
                                                 <th>Trạng thái</th>
@@ -55,9 +55,11 @@
                                         </thead>
                                         <tbody>
                                           @if(isset($brand))
+                                            <?php $i=0; ?>
                                             @foreach($brand as $brand)
+                                            <?php $i++; ?>
                                             <tr class="tr-shadow">
-                                                <td>{{$brand->brand_id}}</td>
+                                                <td><?php echo $i ?></td>
                                                 <td>{{$brand->brand_name}}</td>
                                                 <td>{{$brand->brand_title_seo}}</td>
                                                 <?php

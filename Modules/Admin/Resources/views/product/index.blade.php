@@ -25,6 +25,16 @@
                                     @endif
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <select name="prod_brand" class="form-control">
+                                    <option value="">Thương hiệu</option>
+                                    @if(isset($brandList))
+                                        @foreach($brandList as $brand)
+                                            <option value="{{$brand->brand_id}}" {{\Request::get('prod_brand') == $brand->brand_id ? "selected='selected'" : ""}}>{{$brand->brand_name}}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </div>
                             <button class="btn btn-default" type="submit">
                                 <i class="fa fa-search"></i>
                             </button>

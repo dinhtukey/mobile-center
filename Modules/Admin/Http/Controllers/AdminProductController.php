@@ -30,12 +30,17 @@ class AdminProductController extends Controller
         if ($request->prod_cate) {
             $product = $product->where('prod_cate', $request->prod_cate);
         }
+        if ($request->prod_brand) {
+            $product = $product->where('prod_brand', $request->prod_brand);
+        }
         $product = $product->orderByDesc('prod_id')->paginate(10);
 
 
         $category = Category::all();
+        $brand = Brand::all();
         $data['prodList'] = $product;
         $data['cateList'] = $category;
+        $data['brandList'] = $brand;
         return view('admin::product.index', $data);
     }
     public function getAdd()

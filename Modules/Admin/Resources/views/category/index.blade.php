@@ -46,7 +46,7 @@
                                     <table class="table table-data2">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
+                                                <th>ID</th>
                                                 <th>Tên danh mục</th>
                                                 <th>Title seo</th>
                                                 <th>Trạng thái</th>
@@ -55,9 +55,11 @@
                                         </thead>
                                         <tbody>
                                           @if(isset($listCategory))
+                                            <?php $i = 0; ?>
                                             @foreach($listCategory as $category)
+                                            <?php $i++; ?>
                                             <tr class="tr-shadow">
-                                                <td>{{$category->cate_id}}</td>
+                                                <td><?php echo $i?></td>
                                                 <td>{{$category->cate_name}}</td>
                                                 <td>{{$category->cate_title_seo}}</td>
                                                 <?php
