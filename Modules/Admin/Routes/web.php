@@ -46,4 +46,15 @@ Route::prefix('admin')->group(function() {
 
         Route::get('/{action}/{id}','AdminProductController@getAction')->name('admin.product.action');
     });
+
+    Route::group(['prefix' => 'article'],function(){
+        Route::get('/','AdminArticleController@index')->name('admin.article.list');
+        Route::get('/add','AdminArticleController@getAdd')->name('admin.article.add');
+        Route::post('/add','AdminArticleController@postAdd');
+
+        Route::get('/edit/{id}','AdminArticleController@getEdit')->name('admin.article.edit');
+        Route::post('/edit/{id}','AdminArticleController@postEdit');
+
+        Route::get('/{action}/{id}','AdminArticleController@getAction')->name('admin.article.action');
+    });
 });

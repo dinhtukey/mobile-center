@@ -193,6 +193,18 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-copy"></i>Tin tức</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li class="{{\Request::route()->getName() == 'admin.product.add' ? 'active' : ''}}">
+                                    <a href="{{route('admin.article.add')}}">Thêm tin tức</a>
+                                </li>
+                                <li class="{{\Request::route()->getName() == 'admin.product.list' ? 'active' : ''}}">
+                                    <a href="{{route('admin.article.list')}}">Danh sách tin tức</a>
+                                </li>
+                            </ul>
+                        </li>
                         <li>
                             <a href="table.html">
                                 <i class="fas fa-table"></i>Tables</a>

@@ -1649,7 +1649,7 @@ section {
     border-radius: 5px;
     /* text-align: center; */
     padding-left: 8px;
-    margin: 5px;
+    margin-bottom: 5px;
 }
 
 .navbar-sidebar .navbar__list li.active > a {
@@ -1660,7 +1660,7 @@ section {
     border-radius: 5px;
     /* text-align: center; */
     padding-left: 8px;
-    margin: 5px;
+    margin-bottom: 5px;
 }
 
 .has-sub {

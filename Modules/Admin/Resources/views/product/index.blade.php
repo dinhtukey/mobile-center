@@ -13,7 +13,7 @@
                     <div class="table-data__tool-left">
                         <form class="form-inline" action="">
                             <div class="form-group">
-                                <input class="form-control" type="text" name="name" placeholder="Search for " value="{{\Request::get('name')}}" />
+                                <input class="form-control" type="text" name="name" placeholder="Tìm kiếm " value="{{\Request::get('name')}}" />
                             </div>
                             <div class="form-group">
                                 <select name="prod_cate" class="form-control">
