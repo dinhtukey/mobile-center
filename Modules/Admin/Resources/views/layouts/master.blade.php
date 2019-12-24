@@ -11,7 +11,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>@yield('title') | E-Commerce</title>
+    <title>@yield('title') | Mobile Center</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -490,6 +490,23 @@
 
     <!-- Main JS-->
     <script src="js/main.js"></script>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                
+                reader.onload = function(e) {
+                $('#out_img').attr('src', e.target.result);
+                }
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+            }
+
+        $("#input_img").change(function() {
+            readURL(this);
+        });
+    </script>
 
 </body>
 

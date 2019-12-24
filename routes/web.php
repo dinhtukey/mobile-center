@@ -14,3 +14,6 @@
 
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('danh-muc/{slug}-{id}','CategoryController@getListProduct')->name('category.list.product');
+Route::get('san-pham/{slug}-{id}','ProductController@getDetailProduct')->name('product.get.product');
+

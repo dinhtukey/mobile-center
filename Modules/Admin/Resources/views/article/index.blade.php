@@ -60,7 +60,7 @@
                                     <img height="100px" src="{{asset('storage/app/avatar/'.$art->art_img)}}">
                                 </td>
                                 <td>
-                                    {!!$art->art_description!!}
+                                {!!str_limit($art->art_description, $limit = 50, $end = '...')!!}
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.article.action',['active',$art->id]) }}" class="badge {{$art->getStatus($art->art_active)['class']}}">{{$art->getStatus($art->art_active)['name']}}
