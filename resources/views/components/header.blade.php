@@ -4,7 +4,7 @@
             <!-- logo start -->
             <div class="col-md-3 col-sm-12 text-center nopadding-right">
                 <div class="top-logo">
-                    <a href="index.html"><img src="img/logo.gif" alt="" /></a>
+                    <a href="{{route('home')}}"><img src="img/logo.gif" alt="" /></a>
                 </div>
             </div>
             <!-- logo end -->
@@ -246,10 +246,15 @@
                         <div class="expand dropps-menu">
                             <a href="#"><i class="fa fa-align-right"></i></a>
                             <ul class="restrain language">
+                                @if(Auth::check())
                                 <li><a href="login.html">Quản lý</a></li>
                                 <li><a href="wishlist.html">Sản phẩm yêu thích</a></li>
                                 <li><a href="cart.html">Giỏ hàng</a></li>
                                 <li><a href="login.html">Thoát</a></li>
+                                @else                             
+                                    <li><a href="{{route('get.login')}}">Đăng nhập</a></li>
+                                    <li><a href="{{route('get.register')}}">Đăng kí</a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>

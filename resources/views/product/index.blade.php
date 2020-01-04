@@ -213,7 +213,7 @@
 												<!-- single-product start -->
 												<div class="single-product">
 													<div class="product-img">
-														<a href="#">
+														<a href="{{route('product.get.product',[$product->prod_slug,$product->prod_id])}}">
 															<img class="primary-image" src="{{asset('storage/app/avatar/'.$product->prod_img)}}" alt="" />
 															<img class="secondary-image" src="{{asset('storage/app/avatar/'.$product->prod_img)}}" alt="" />
 														</a>
@@ -238,7 +238,7 @@
 															</div>
 														</div>
 														<div class="price-box">
-															<span class="new-price">{{number_format($product->prod_price)}} ₫</span>
+															<span class="new-price">{{number_format($product->prod_price,0,',','.')}} ₫</span>
 														</div>
 													</div>
 													<div class="product-content">

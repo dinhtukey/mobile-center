@@ -12,5 +12,6 @@ class FrontEndController extends Controller
     {
         $categories = Category::all();
         View::share('categories',$categories);
+        //$this->middleware('auth');
     }
 }

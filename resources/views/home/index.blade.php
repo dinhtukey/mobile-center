@@ -66,7 +66,7 @@
 												<!-- single-product start -->
 												<div class="single-product first-sale">
 													<div class="product-img">
-														<a href="#">
+														<a href="{{route('product.get.product',[$product->prod_slug,$product->prod_id])}}">
 															<img class="primary-image" src="{{asset('storage/app/avatar/'.$product->prod_img)}}" alt="" />
 															<img class="secondary-image" src="{{asset('storage/app/avatar/'.$product->prod_img)}}" alt="" />
 														</a>
