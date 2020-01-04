@@ -159,7 +159,7 @@
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Danh mục sản phẩm</a>
+                                <i class="fas fa-tablet"></i>Danh mục sản phẩm</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li class="{{\Request::route()->getName() == 'admin.category.add' ? 'active' : ''}}">
                                     <a href="{{route('admin.category.add')}}">Thêm danh mục</a>
@@ -171,7 +171,7 @@
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Thương hiệu sản phẩm</a>
+                                <i class="fas  fa-camera-retro"></i>Thương hiệu sản phẩm</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li class="{{\Request::route()->getName() == 'admin.brand.add' ? 'active' : ''}}">
                                     <a href="{{route('admin.brand.add')}}">Thêm thương hiệu</a>
@@ -183,7 +183,7 @@
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Sản phẩm</a>
+                                <i class="fas fa-gamepad"></i>Sản phẩm</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li class="{{\Request::route()->getName() == 'admin.product.add' ? 'active' : ''}}">
                                     <a href="{{route('admin.product.add')}}">Thêm sản phẩm</a>
@@ -195,12 +195,36 @@
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Tin tức</a>
+                                <i class="fas fa-book"></i>Tin tức</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li class="{{\Request::route()->getName() == 'admin.product.add' ? 'active' : ''}}">
+                                <li class="{{\Request::route()->getName() == 'admin.article.add' ? 'active' : ''}}">
                                     <a href="{{route('admin.article.add')}}">Thêm tin tức</a>
                                 </li>
-                                <li class="{{\Request::route()->getName() == 'admin.product.list' ? 'active' : ''}}">
+                                <li class="{{\Request::route()->getName() == 'admin.article.list' ? 'active' : ''}}">
+                                    <a href="{{route('admin.article.list')}}">Danh sách tin tức</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-suitcase"></i>Đơn hàng</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li class="{{\Request::route()->getName() == 'admin.article.add' ? 'active' : ''}}">
+                                    <a href="{{route('admin.article.add')}}">Thêm tin tức</a>
+                                </li>
+                                <li class="{{\Request::route()->getName() == 'admin.article.list' ? 'active' : ''}}">
+                                    <a href="{{route('admin.article.list')}}">Danh sách tin tức</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-users"></i>Thành viên</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li class="{{\Request::route()->getName() == 'admin.article.add' ? 'active' : ''}}">
+                                    <a href="{{route('admin.article.add')}}">Thêm tin tức</a>
+                                </li>
+                                <li class="{{\Request::route()->getName() == 'admin.article.list' ? 'active' : ''}}">
                                     <a href="{{route('admin.article.list')}}">Danh sách tin tức</a>
                                 </li>
                             </ul>
