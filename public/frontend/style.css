@@ -3190,3 +3190,13 @@ input#rememberme {
 	color: #3f3f3f;
 	transition: .3s;
 }
+.submit{
+    padding: 5px 15px;
+    background: #3f3f3f;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 700;
+	border: none;
+}

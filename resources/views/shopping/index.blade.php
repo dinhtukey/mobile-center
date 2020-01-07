@@ -35,6 +35,7 @@
 		<div class="cart-area-start">
 			<div class="container">
 				<!-- Shopping Cart Table -->
+				@if(\Cart::count())
 				<div class="row">
 					<div class="col-md-12">
 						<div class="table-responsive">
@@ -167,6 +168,9 @@
 					</div>
 				</div>
 				<!-- Shopping Coupon -->
+				@else
+                                <h2>Giỏ hàng rỗng!</h2>
+                            @endif
 			</div>	
 		</div>
         <!-- Shopping Table Container -->

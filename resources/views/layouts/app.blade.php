@@ -142,7 +142,9 @@
    		<!-- wow js
 		============================================ -->       
         <script src="js/wow.js"></script>
-        
+        <!-- gmap js
+		============================================ -->       
+        <script src="js/gmap.js"></script>
    		<!-- plugins js
 		============================================ -->         
         <script src="js/plugins.js"></script>

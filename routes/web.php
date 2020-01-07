@@ -33,3 +33,8 @@ Route::group(['prefix'=>'shopping'],function(){
    Route::get('/{action}/{id}','ShoppingCartController@getActionCart')->name('shoppingcart.action');
    Route::get('/cap-nhap','ShoppingCartController@getUpdateCart')->name('shoppingcart.update');
 }); 
+
+
+
+Route::get('lien-he','ContactController@getContact')->name('get.contact');
+Route::post('lien-he','ContactController@postContact')->name('post.contact');
