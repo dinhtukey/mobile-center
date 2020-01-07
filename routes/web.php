@@ -27,3 +27,9 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('danh-muc/{slug}-{id}','CategoryController@getListProduct')->name('category.list.product');
 Route::get('san-pham/{slug}-{id}','ProductController@getDetailProduct')->name('product.get.product');
 
+Route::group(['prefix'=>'shopping'],function(){
+   Route::get('/them-vao-gio-hang/{id}','ShoppingCartController@getAddCart')->name('shoppingcart.add');
+   Route::get('/danh-sach','ShoppingCartController@getListCart')->name('shoppingcart.list');
+   Route::get('/{action}/{id}','ShoppingCartController@getActionCart')->name('shoppingcart.action');
+   Route::get('/cap-nhap','ShoppingCartController@getUpdateCart')->name('shoppingcart.update');
+}); 
