@@ -11,7 +11,11 @@ class FrontEndController extends Controller
     public function __construct()
     {
         $categories = Category::all();
-        View::share('categories',$categories);
+        $data['categories'] = $categories;
+
+        
+        
+        View::share($data);
         //$this->middleware('auth');
     }
 }

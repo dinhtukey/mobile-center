@@ -189,36 +189,33 @@
                                     <a href="{{route('shoppingcart.list')}}"><i class="icon-bag"></i></a>
                                     <a href="{{route('shoppingcart.list')}}"><span class="cart-quantity">{{\Cart::count()}}</span></a>
                                 </div>
+                                
                                 <div class="restrain small-cart-content">
+                                @if(\Cart::count())
                                     <ul class="cart-list">
+                                        @foreach($productCart as $product)
                                         <li>
                                             <a class="sm-cart-product" href="product-details.html">
-                                                <img src="img/products/sm-products/cart1.jpg" alt="">
+                                                <img src="{{asset('storage/app/avatar/'.$product->options->avatar)}}" alt="">
                                             </a>
                                             <div class="small-cart-detail">
-                                                <a class="remove" href="#"><i class="fa fa-times-circle"></i></a>
-                                                <a href="#" class="edit-btn"><img src="img/btn_edit.gif" alt="Edit Button" /></a>
-                                                <a class="small-cart-name" href="product-details.html">Voluptas nulla</a>
-                                                <span class="quantitys"><strong>1</strong>x<span>$75.00</span></span>
+                                                <a class="remove" href="{{route('shoppingcart.action',['xoa',$product->rowId])}}"><i class="fa fa-times-circle"></i></a>
+                                                <a href="{{route('shoppingcart.list')}}" class="edit-btn"><img src="img/btn_edit.gif" alt="Edit Button" /></a>
+                                                <a class="small-cart-name" href="{{route('shoppingcart.list')}}">{{$product->name}}</a>
+                                                <span class="quantitys"><strong>{{$product->qty}}</strong>x<span>{{number_format($product->price,0,',','.')}} ₫</span></span>
                                             </div>
                                         </li>
-                                        <li>
-                                            <a class="sm-cart-product" href="product-details.html">
-                                                <img src="img/products/sm-products/cart2.jpg" alt="">
-                                            </a>
-                                            <div class="small-cart-detail">
-                                                <a class="remove" href="#"><i class="fa fa-times-circle"></i></a>
-                                                <a href="#" class="edit-btn"><img src="img/btn_edit.gif" alt="Edit Button" /></a>
-                                                <a class="small-cart-name" href="product-details.html">Donec ac tempus</a>
-                                                <span class="quantitys"><strong>1</strong>x<span>$75.00</span></span>
-                                            </div>
-                                        </li>
+                                        @endforeach
                                     </ul>
-                                    <p class="total">Subtotal: <span class="amount">$155.00</span></p>
+                                    <p class="total">Thành tiền: <span class="amount">{{number_format($total-\Cart::count()*400000,0,',','.')}} ₫</span></p>
                                     <p class="buttons">
-                                        <a href="checkout.html" class="button">Checkout</a>
+                                        <a href="{{route('get.form.pay')}}" class="button">Thanh toán</a>
                                     </p>
+                                    @else
+                                    <p class="total" style="font-size: 12px;">Giỏ hàng rỗng!</p>
+                                    @endif
                                 </div>
+                                
                             </div>
                         </div>
                     </div>

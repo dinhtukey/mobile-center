@@ -23,7 +23,7 @@
 									<a href="index.html">Home</a>
 									<span><i class="fa fa-angle-right"></i></span>
 								</li>
-								<li class="category3"><span>Shopping Cart</span></li>
+								<li class="category3"><span>Giỏ hàng</span></li>
 							</ul>
 						</div>
 					</div>
@@ -157,9 +157,9 @@
 							<ul>
 								<li class="cartSubT">Tạm tính:    <span>{{number_format($total,0,',','.')}} ₫</span></li>
 								<li class="cartSubT">Khuyến mãi:    <span>{{number_format(\Cart::count()*400000,0,',','.')}} ₫</span></li>
-								<li class="cartSubT">Grand total:    <span>{{number_format($total-\Cart::count()*400000,0,',','.')}} ₫</span></li>
+								<li class="cartSubT">Tổng tiền:    <span>{{number_format($total-\Cart::count()*400000,0,',','.')}} ₫</span></li>
 							</ul>
-							<a class="proceedbtn" href="#">PROCEED TO CHECK OUT</a>
+							<a class="proceedbtn" href="{{route('get.form.pay')}}">THANH TOÁN</a>
 							<div class="multiCheckout">
 								<a href="#">Checkout with Multiple Addresses</a>
 							</div>
@@ -169,8 +169,8 @@
 				</div>
 				<!-- Shopping Coupon -->
 				@else
-                                <h2>Giỏ hàng rỗng!</h2>
-                            @endif
+                    <h2>Giỏ hàng rỗng!</h2>
+                @endif
 			</div>	
 		</div>
         <!-- Shopping Table Container -->

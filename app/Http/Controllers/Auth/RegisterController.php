@@ -17,7 +17,12 @@ class RegisterController extends FrontEndController
         parent::__construct();
     }
     public function getRegister(){
-        return view('auth.register');
+        //check giỏ hàng
+        $products = \Cart::content();
+        $total = \Cart::total(2,'.','');
+        $data['productCart'] = $products;
+        $data['total'] = $total;
+        return view('auth.register',$data);
     }
     public function postRegister(Request $request){
         $user = new User();

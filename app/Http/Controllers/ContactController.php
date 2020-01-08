@@ -12,7 +12,13 @@ class ContactController extends FrontEndController
         parent::__construct();
     }
     public function getContact(){
-        return view('contact.index');
+        //check giỏ hàng
+        $products = \Cart::content();
+        $total = \Cart::total(2,'.','');
+        $data['productCart'] = $products;
+        $data['total'] = $total;
+
+        return view('contact.index',$data);
     }
     public function postContact(Request $request){
         $contact = new Contact();

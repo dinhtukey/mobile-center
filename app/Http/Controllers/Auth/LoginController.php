@@ -25,7 +25,12 @@ class LoginController extends FrontEndController
     }
     use AuthenticatesUsers;
     public function getLogin(){
-        return view('auth.login');
+        //check giỏ hàng
+        $products = \Cart::content();
+        $total = \Cart::total(2,'.','');
+        $data['productCart'] = $products;
+        $data['total'] = $total;
+        return view('auth.login',$data);
     }
 
     public function postLogin(Request $request){

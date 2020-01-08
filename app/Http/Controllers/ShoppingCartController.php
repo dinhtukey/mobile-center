@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\Float_;
-use PhpParser\Node\Expr\Cast\Double;
-use Symfony\Component\Finder\Comparator\NumberComparator;
 
 class ShoppingCartController extends FrontEndController
 {
@@ -29,11 +26,12 @@ class ShoppingCartController extends FrontEndController
     }
 
     public function getListCart(){
+        
+        //check giỏ hàng
         $products = \Cart::content();
         $total = \Cart::total(2,'.','');
         $data['productCart'] = $products;
         $data['total'] = $total;
-       // dd($data);
         return view('shopping.index',$data);
     }
     public function getActionCart($action,$id,Request $request){
@@ -55,5 +53,19 @@ class ShoppingCartController extends FrontEndController
     }
     public function getUpdateCart(Request $request){
         \Cart::update($request->rowId,$request->qty);
+    }
+
+    public function getFormPay(){
+        $products = \Cart::content();
+        $total = \Cart::total(2,'.','');
+        $data['productCart'] = $products;
+        $data['total'] = $total;
+
+        //check giỏ hàng
+        $products = \Cart::content();
+        $total = \Cart::total(2,'.','');
+        $data['productCart'] = $products;
+        $data['total'] = $total;
+        return view('shopping.checkout',$data);
     }
 }

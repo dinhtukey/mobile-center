@@ -34,7 +34,9 @@ Route::group(['prefix'=>'shopping'],function(){
    Route::get('/cap-nhap','ShoppingCartController@getUpdateCart')->name('shoppingcart.update');
 }); 
 
-
+Route::group(['prefix'=>'gio-hang','middleware'=>'CheckLogedIn'],function(){
+   Route::get('/thanh-toan','ShoppingCartController@getFormPay')->name('get.form.pay');
+}); 
 
 Route::get('lien-he','ContactController@getContact')->name('get.contact');
 Route::post('lien-he','ContactController@postContact')->name('post.contact');

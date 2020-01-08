@@ -23,6 +23,12 @@ class CategoryController extends FrontEndController
             $cateName = Category::find($id);
             $data['productByCate'] = $productByCate;
             $data['cateName'] = $cateName;
+
+            //check giỏ hàng
+            $products = \Cart::content();
+            $total = \Cart::total(2,'.','');
+            $data['productCart'] = $products;
+            $data['total'] = $total;
             return view('product.index',$data);
         }
         return redirect('/');

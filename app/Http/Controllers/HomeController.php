@@ -22,6 +22,12 @@ class HomeController extends FrontEndController
         $articleNews = Article::orderByDesc('id')->limit(6)->get();
         $data['productFeatured'] = $productFeatured;
         $data['articleNews'] = $articleNews;
+        
+        //check giỏ hàng
+        $products = \Cart::content();
+        $total = \Cart::total(2,'.','');
+        $data['productCart'] = $products;
+        $data['total'] = $total;
         return view('home.index',$data);
     }
 }
