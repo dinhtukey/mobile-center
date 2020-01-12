@@ -9,10 +9,14 @@
 						<div class="container-inner">
 							<ul>
 								<li class="home">
-									<a href="index.html">Home</a>
+									<a href="{{route('home')}}">Home</a>
 									<span><i class="fa fa-angle-right"></i></span>
 								</li>
-								<li class="category3"><span>Shop List</span></li>
+								<li class="home">
+									<a href="{{route('category.list.product',[$cateName->cate_slug,$cateName->cate_id])}}">{{$cateName->cate_name}}</a>
+									<span><i class="fa fa-angle-right"></i></span>
+								</li>
+								<li class="category3"><span>{{$productDetail->prod_name}}</span></li>
 							</ul>
 						</div>
 					</div>
@@ -84,12 +88,12 @@
 									<p class="availability in-stock">Availability: <span>In stock</span></p>
 									<div class="actions-e">
 										<div class="action-buttons-single">
-											<div class="inputx-content">
+											<!--<div class="inputx-content">
 												<label for="qty">Quantity:</label>
 												<input type="text" name="qty" id="qty" maxlength="12" value="1" title="Qty" class="input-text qty">
-											</div>
+											</div>-->
 											<div class="add-to-cart">
-												<a href="#">Add to cart</a>
+												<a href="{{route('shoppingcart.add',$productDetail->prod_id)}}">Thêm vào giỏ hàng</a>
 											</div>
 											<div class="add-to-links">
 												<div class="add-to-wishlist">
@@ -113,8 +117,8 @@
 					<div class="single-product-tab">
 						  <!-- Nav tabs -->
 						<ul class="details-tab">
-							<li class="active"><a href="#home" data-toggle="tab">Description</a></li>
-							<li class=""><a href="#messages" data-toggle="tab"> Review (1)</a></li>
+							<li class="active"><a href="#home" data-toggle="tab">Mô tả</a></li>
+							<li class=""><a href="#messages" data-toggle="tab"> Nhận xét</a></li>
 						</ul>
 						  <!-- Tab panes -->
 						<div class="tab-content">

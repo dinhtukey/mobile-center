@@ -13,7 +13,7 @@
 						<div class="container-inner">
 							<ul>
 								<li class="home">
-									<a href="index.html">Home</a>
+									<a href="{{route('home')}}">Home</a>
 									<span><i class="fa fa-angle-right"></i></span>
 								</li>
 								<li class="category3"><span>{{$cateName->cate_name}}</span></li>
@@ -34,18 +34,17 @@
 							<aside class="widge-topbar">
 								<div class="bar-title">
 									<div class="bar-ping"><img src="img/bar-ping.png" alt=""></div>
-									<h2>Shop by</h2>
+									<h2>Sản phẩm</h2>
 								</div>
 							</aside>
 							<aside class="sidebar-content">
 								<div class="sidebar-title">
-									<h6>Categories</h6>
+									<h6>Danh mục</h6>
 								</div>
 								<ul class="sidebar-tags">
-									<li><a href="#">Acsessories</a><span> (14)</span></li>
-									<li><a href="#">Afternoon</a><span> (14)</span></li>
-									<li><a href="#">Attachment</a><span> (14)</span></li>
-									<li><a href="#">Beauty</a><span> (14)</span></li>
+									@foreach($categories as $cate)
+                                        <li><a href="{{route('category.list.product',[$cate->cate_slug,$cate->cate_id])}}">{{$cate->cate_name}}</a></li>
+                                    @endforeach
 								</ul>
 							</aside>
 							<aside class="sidebar-content">
@@ -219,21 +218,21 @@
 														</a>
 														<div class="action-zoom">
 															<div class="add-to-cart">
-																<a href="#" title="Quick View"><i class="fa fa-search-plus"></i></a>
+																<a href="{{route('product.get.product',[$product->prod_slug,$product->prod_id])}}" title="Xem nhanh"><i class="fa fa-search-plus"></i></a>
 															</div>
 														</div>
 														<div class="actions">
 															<div class="action-buttons">
 																<div class="add-to-links">
 																	<div class="add-to-wishlist">
-																		<a href="#" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
+																		<a href="#" title="Thêm vào yêu thích"><i class="fa fa-heart"></i></a>
 																	</div>
 																	<div class="compare-button">
-																		<a href="#" title="Add to Cart"><i class="icon-bag"></i></a>
+																		<a href="{{route('shoppingcart.add',$product->prod_id)}}" title="Thêm vào giỏ hàng"><i class="icon-bag"></i></a>
 																	</div>									
 																</div>
 																<div class="quickviewbtn">
-																	<a href="#" title="Add to Compare"><i class="fa fa-retweet"></i></a>
+																	<a href="" title="Thêm vào so sánh"><i class="fa fa-retweet"></i></a>
 																</div>
 															</div>
 														</div>
@@ -242,7 +241,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h2 class="product-name"><a href="#">{{$product->prod_name}}</a></h2>
+														<h2 class="product-name"><a href="{{route('product.get.product',[$product->prod_slug,$product->prod_id])}}">{{$product->prod_name}}</a></h2>
 														<p>{!!str_limit($product->prod_description, $limit = 50, $end = '...')!!}</p>
 													</div>
 												</div>
@@ -259,19 +258,20 @@
 							<div class="tab-pane fade" id="shop-list-tab">
 								<div class="list-view">
 									<!-- single-product start -->
+									@foreach($productByCate as $product)
 									<div class="product-list-wrapper">
 										<div class="single-product">								
 											<div class="col-md-4 col-sm-4 col-xs-12">
 												<div class="product-img">
-													<a href="#">
-														<img class="primary-image" src="img/products/product-7.jpg" alt="" />
-														<img class="secondary-image" src="img/products/product-2.jpg" alt="" />
+													<a href="{{route('product.get.product',[$product->prod_slug,$product->prod_id])}}">
+														<img class="primary-image" src="{{asset('storage/app/avatar/'.$product->prod_img)}}" alt="" />
+														<img class="secondary-image" src="{{asset('storage/app/avatar/'.$product->prod_img)}}" alt="" />
 													</a>
 												</div>								
 											</div>
 											<div class="col-md-8 col-sm-8 col-xs-12">
 												<div class="product-content">
-													<h2 class="product-name"><a href="#">Cras neque metus</a></h2>
+													<h2 class="product-name"><a href="{{route('product.get.product',[$product->prod_slug,$product->prod_id])}}">{{$product->prod_name}}</a></h2>
 													<div class="rating-price">	
 														<div class="pro-rating">
 															<a href="#"><i class="fa fa-star"></i></a>
@@ -281,16 +281,16 @@
 															<a href="#"><i class="fa fa-star"></i></a>
 														</div>
 														<div class="price-boxes">
-															<span class="new-price">$110.00</span>
+															<span class="new-price">{{number_format($product->prod_price,0,',','.')}} ₫</span>
 														</div>
 													</div>
 													<div class="product-desc">
-														<p>Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Viva</p>
+														<p>{!!str_limit($product->prod_description, $limit = 200, $end = '...')!!}</p>
 													</div>
 													<div class="actions-e">
 														<div class="action-buttons">
 															<div class="add-to-cart">
-																<a href="#">Add to cart</a>
+																<a href="{{route('shoppingcart.add',$product->prod_id)}}">Thêm vào giỏ hàng</a>
 															</div>
 															<div class="add-to-links">
 																<div class="add-to-wishlist">
@@ -306,448 +306,9 @@
 											</div>
 										</div>
 									</div>
+									@endforeach
 									<!-- single-product end -->	
-									<!-- single-product start -->
-									<div class="product-list-wrapper">
-										<div class="single-product">	 							
-											<div class="col-md-4 col-sm-4 col-xs-12">
-												<div class="product-img">
-													<a href="#">
-														<img class="primary-image" src="img/products/product-7.jpg" alt="" />
-														<img class="secondary-image" src="img/products/product-8.jpg" alt="" />
-													</a>
-												</div>									
-											</div>
-											<div class="col-md-8 col-sm-8 col-xs-12">
-												<div class="product-content">
-													<h2 class="product-name"><a href="#">Donec non est</a></h2>
-													<div class="rating-price">	
-														<div class="pro-rating">
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-														</div>
-														<div class="price-boxes">
-															<span class="new-price">$450.00</span>
-														</div>
-													</div>
-													<div class="product-desc">
-														<p>Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Viva</p>
-													</div>
-													<div class="actions-e">
-														<div class="action-buttons">
-															<div class="add-to-cart">
-																<a href="#">Add to cart</a>
-															</div>
-															<div class="add-to-links">
-																<div class="add-to-wishlist">
-																	<a href="#" data-toggle="tooltip" title="" data-original-title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-																</div>
-																<div class="compare-button">
-																	<a href="#" data-toggle="tooltip" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
-																</div>									
-															</div>
-														</div>
-													</div>												
-												</div>									
-											</div>
-										</div>
-									</div>
-									<!-- single-product end -->
-									<!-- single-product start -->
-									<div class="product-list-wrapper">
-										<div class="single-product">	 							
-											<div class="col-md-4 col-sm-4 col-xs-12">
-												<div class="product-img">
-													<a href="#">
-														<img class="primary-image" src="img/products/product-5.jpg" alt="" />
-														<img class="secondary-image" src="img/products/product-6.jpg" alt="" />
-													</a>
-												</div>									
-											</div>
-											<div class="col-md-8 col-sm-8 col-xs-12">
-												<div class="product-content">
-													<h2 class="product-name"><a href="#">Occaecati cupiditate</a></h2>
-													<div class="rating-price">	
-														<div class="pro-rating">
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-														</div>
-														<div class="price-boxes">
-															<span class="new-price">$380.00</span>
-														</div>
-													</div>
-													<div class="product-desc">
-														<p>Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Viva</p>
-													</div>
-													<div class="actions-e">
-														<div class="action-buttons">
-															<div class="add-to-cart">
-																<a href="#">Add to cart</a>
-															</div>
-															<div class="add-to-links">
-																<div class="add-to-wishlist">
-																	<a href="#" data-toggle="tooltip" title="" data-original-title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-																</div>
-																<div class="compare-button">
-																	<a href="#" data-toggle="tooltip" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
-																</div>									
-															</div>
-														</div>
-													</div>
-												</div>									
-											</div>
-										</div>
-									</div>
-									<!-- single-product end -->
-									<!-- single-product start -->
-									<div class="product-list-wrapper">
-										<div class="single-product">	 							
-											<div class="col-md-4 col-sm-4 col-xs-12">
-												<div class="product-img">
-													<a href="#">
-														<img class="primary-image" src="img/products/product-11.jpg" alt="" />
-														<img class="secondary-image" src="img/products/product-12.jpg" alt="" />
-													</a>
-												</div>									
-											</div>
-											<div class="col-md-8 col-sm-8 col-xs-12">
-												<div class="product-content">
-													<h2 class="product-name"><a href="#">Cras neque metus</a></h2>
-													<div class="rating-price">	
-														<div class="pro-rating">
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-														</div>
-														<div class="price-boxes">
-															<span class="new-price">$340.00</span>
-														</div>
-													</div>
-													<div class="product-desc">
-														<p>Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Viva</p>
-													</div>
-													<div class="actions-e">
-														<div class="action-buttons">
-															<div class="add-to-cart">
-																<a href="#">Add to cart</a>
-															</div>
-															<div class="add-to-links">
-																<div class="add-to-wishlist">
-																	<a href="#" data-toggle="tooltip" title="" data-original-title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-																</div>
-																<div class="compare-button">
-																	<a href="#" data-toggle="tooltip" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
-																</div>									
-															</div>
-														</div>
-													</div>
-												</div>									
-											</div>
-										</div>
-									</div>
-									<!-- single-product end -->
-									<!-- single-product start -->
-									<div class="product-list-wrapper">
-										<div class="single-product">	 							
-											<div class="col-md-4 col-sm-4 col-xs-12">
-												<div class="product-img">
-													<a href="#">
-														<img class="primary-image" src="img/products/product-9.jpg" alt="" />
-														<img class="secondary-image" src="img/products/product-10.jpg" alt="" />
-													</a>
-												</div>									
-											</div>
-											<div class="col-md-8 col-sm-8 col-xs-12">
-												<div class="product-content">
-													<h2 class="product-name"><a href="#">Voluptas nulla</a></h2>
-													<div class="rating-price">	
-														<div class="pro-rating">
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-														</div>
-														<div class="price-boxes">
-															<span class="new-price">$400.00</span>
-														</div>
-													</div>
-													<div class="product-desc">
-														<p>Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Viva</p>
-													</div>
-													<div class="actions-e">
-														<div class="action-buttons">
-															<div class="add-to-cart">
-																<a href="#">Add to cart</a>
-															</div>
-															<div class="add-to-links">
-																<div class="add-to-wishlist">
-																	<a href="#" data-toggle="tooltip" title="" data-original-title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-																</div>
-																<div class="compare-button">
-																	<a href="#" data-toggle="tooltip" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
-																</div>									
-															</div>
-														</div>
-													</div>
-												</div>									
-											</div>
-										</div>
-									</div>
-									<!-- single-product end -->
-									<!-- single-product start -->
-									<div class="product-list-wrapper">
-										<div class="single-product">	 							
-											<div class="col-md-4 col-sm-4 col-xs-12">
-												<div class="product-img">
-													<a href="#">
-														<img class="primary-image" src="img/products/product-6.jpg" alt="" />
-														<img class="secondary-image" src="img/products/product-7.jpg" alt="" />
-													</a>
-												</div>									
-											</div>
-											<div class="col-md-8 col-sm-8 col-xs-12">
-												<div class="product-content">
-													<h2 class="product-name"><a href="#">Primis in faucibus</a></h2>
-													<div class="rating-price">	
-														<div class="pro-rating">
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-														</div>
-														<div class="price-boxes">
-															<span class="new-price">$200.00</span>
-														</div>
-													</div>
-													<div class="product-desc">
-														<p>Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Viva</p>
-													</div>
-													<div class="actions-e">
-														<div class="action-buttons">
-															<div class="add-to-cart">
-																<a href="#">Add to cart</a>
-															</div>
-															<div class="add-to-links">
-																<div class="add-to-wishlist">
-																	<a href="#" data-toggle="tooltip" title="" data-original-title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-																</div>
-																<div class="compare-button">
-																	<a href="#" data-toggle="tooltip" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
-																</div>									
-															</div>
-														</div>
-													</div>
-												</div>									
-											</div>
-										</div>
-									</div>
-									<!-- single-product end -->
-									<!-- single-product start -->
-									<div class="product-list-wrapper">
-										<div class="single-product">	 							
-											<div class="col-md-4 col-sm-4 col-xs-12">
-												<div class="product-img">
-													<a href="#">
-														<img class="primary-image" src="img/products/product-4.jpg" alt="" />
-														<img class="secondary-image" src="img/products/product-5.jpg" alt="" />
-													</a>
-												</div>								
-											</div>
-											<div class="col-md-8 col-sm-8 col-xs-12">
-												<div class="product-content">
-													<h2 class="product-name"><a href="#">Quisque in arcu</a></h2>
-													<div class="rating-price">	
-														<div class="pro-rating">
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-														</div>
-														<div class="price-boxes">
-															<span class="new-price">$440.00</span>
-														</div>
-													</div>
-													<div class="product-desc">
-														<p>Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Viva</p>
-													</div>
-													<div class="actions-e">
-														<div class="action-buttons">
-															<div class="add-to-cart">
-																<a href="#">Add to cart</a>
-															</div>
-															<div class="add-to-links">
-																<div class="add-to-wishlist">
-																	<a href="#" data-toggle="tooltip" title="" data-original-title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-																</div>
-																<div class="compare-button">
-																	<a href="#" data-toggle="tooltip" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
-																</div>									
-															</div>
-														</div>
-													</div>
-												</div>									
-											</div>
-										</div>
-									</div>
-									<!-- single-product end -->
-									<!-- single-product start -->
-									<div class="product-list-wrapper">
-										<div class="single-product">	 							
-											<div class="col-md-4 col-sm-4 col-xs-12">
-												<div class="product-img">
-													<a href="#">
-														<img class="primary-image" src="img/products/product-2.jpg" alt="" />
-														<img class="secondary-image" src="img/products/product-3.jpg" alt="" />
-													</a>
-												</div>								
-											</div>
-											<div class="col-md-8 col-sm-8 col-xs-12">
-												<div class="product-content">
-													<h2 class="product-name"><a href="#">Imperial Consequences</a></h2>
-													<div class="rating-price">	
-														<div class="pro-rating">
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-														</div>
-														<div class="price-boxes">
-															<span class="new-price">$334.00</span>
-														</div>
-													</div>
-													<div class="product-desc">
-														<p>Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Viva</p>
-													</div>
-													<div class="actions-e">
-														<div class="action-buttons">
-															<div class="add-to-cart">
-																<a href="#">Add to cart</a>
-															</div>
-															<div class="add-to-links">
-																<div class="add-to-wishlist">
-																	<a href="#" data-toggle="tooltip" title="" data-original-title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-																</div>
-																<div class="compare-button">
-																	<a href="#" data-toggle="tooltip" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
-																</div>									
-															</div>
-														</div>
-													</div>
-												</div>									
-											</div>
-										</div>
-									</div>
-									<!-- single-product end -->
-									<!-- single-product start -->
-									<div class="product-list-wrapper">
-										<div class="single-product">	 							
-											<div class="col-md-4 col-sm-4 col-xs-12">
-												<div class="product-img">
-													<a href="#">
-														<img class="primary-image" src="img/products/product-4.jpg" alt="" />
-														<img class="secondary-image" src="img/products/product-2.jpg" alt="" />
-													</a>
-												</div>									
-											</div>
-											<div class="col-md-8 col-sm-8 col-xs-12">
-												<div class="product-content">
-													<h2 class="product-name"><a href="#">Consequences</a></h2>
-													<div class="rating-price">	
-														<div class="pro-rating">
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-														</div>
-														<div class="price-boxes">
-															<span class="new-price">$220.00</span>
-														</div>
-													</div>
-													<div class="product-desc">
-														<p>Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Viva</p>
-													</div>
-													<div class="actions-e">
-														<div class="action-buttons">
-															<div class="add-to-cart">
-																<a href="#">Add to cart</a>
-															</div>
-															<div class="add-to-links">
-																<div class="add-to-wishlist">
-																	<a href="#" data-toggle="tooltip" title="" data-original-title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-																</div>
-																<div class="compare-button">
-																	<a href="#" data-toggle="tooltip" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
-																</div>									
-															</div>
-														</div>
-													</div>
-												</div>									
-											</div>
-										</div>
-									</div>
-									<!-- single-product end -->
-									<!-- single-product start -->
-									<div class="product-list-wrapper">
-										<div class="single-product">	 							
-											<div class="col-md-4 col-sm-4 col-xs-12">
-												<div class="product-img">
-													<a href="#">
-														<img class="primary-image" src="img/products/product-1.jpg" alt="" />
-														<img class="secondary-image" src="img/products/product-1.jpg" alt="" />
-													</a>
-												</div>									
-											</div>
-											<div class="col-md-8 col-sm-8 col-xs-12">
-												<div class="product-content">
-													<h2 class="product-name"><a href="#">Proin lectus ipsum</a></h2>
-													<div class="rating-price">	
-														<div class="pro-rating">
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-															<a href="#"><i class="fa fa-star"></i></a>
-														</div>
-														<div class="price-boxes">
-															<span class="new-price">$230.00</span>
-														</div>
-													</div>
-													<div class="product-desc">
-														<p>Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Viva</p>
-													</div>
-													<div class="actions-e">
-														<div class="action-buttons">
-															<div class="add-to-cart">
-																<a href="#">Add to cart</a>
-															</div>
-															<div class="add-to-links">
-																<div class="add-to-wishlist">
-																	<a href="#" data-toggle="tooltip" title="" data-original-title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-																</div>
-																<div class="compare-button">
-																	<a href="#" data-toggle="tooltip" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
-																</div>									
-															</div>
-														</div>
-													</div>
-												</div>									
-											</div>
-										</div>
-									</div>
-									<!-- single-product end -->
+									
 								</div>
 							</div>
 							<!-- shop toolbar start -->
@@ -780,7 +341,7 @@
 									</div>
 									<div class="col-md-4 col-sm-4 col-xs-12 nopadding-right text-right">
 										<div class="view-mode">
-											<label>View on</label>
+											<label>Chế độ xem</label>
 											<ul>
 												<li class="active"><a href="#shop-grid-tab" data-toggle="tab"><i class="fa fa-th"></i></a></li>
 												<li class=""><a href="#shop-list-tab" data-toggle="tab" ><i class="fa fa-th-list"></i></a></li>

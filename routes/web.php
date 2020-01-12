@@ -36,6 +36,7 @@ Route::group(['prefix'=>'shopping'],function(){
 
 Route::group(['prefix'=>'gio-hang','middleware'=>'CheckLogedIn'],function(){
    Route::get('/thanh-toan','ShoppingCartController@getFormPay')->name('get.form.pay');
+   Route::post('/thanh-toan','ShoppingCartController@postFormPay');
 }); 
 
 Route::get('lien-he','ContactController@getContact')->name('get.contact');

@@ -72,21 +72,21 @@
 														</a>
 														<div class="action-zoom">
 															<div class="add-to-cart">
-																<a href="#" title="Quick View"><i class="fa fa-search-plus"></i></a>
+																<a href="{{route('product.get.product',[$product->prod_slug,$product->prod_id])}}" title="Xem nhanh"><i class="fa fa-search-plus"></i></a>
 															</div>
 														</div>
 														<div class="actions">
 															<div class="action-buttons">
 																<div class="add-to-links">
 																	<div class="add-to-wishlist">
-																		<a href="#" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
+																		<a href="#" title="Thêm vào yêu thích"><i class="fa fa-heart"></i></a>
 																	</div>
 																	<div class="compare-button">
-																		<a href="{{route('shoppingcart.add',$product->prod_id)}}" title="Add to Cart"><i class="icon-bag"></i></a>
+																		<a href="{{route('shoppingcart.add',$product->prod_id)}}" title="Thêm vào giỏ hàng"><i class="icon-bag"></i></a>
 																	</div>									
 																</div>
 																<div class="quickviewbtn">
-																	<a href="#" title="Add to Compare"><i class="fa fa-retweet"></i></a>
+																	<a href="#" title="Thêm vào so sánh"><i class="fa fa-retweet"></i></a>
 																</div>
 															</div>
 														</div>

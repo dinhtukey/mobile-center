@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -19,6 +20,9 @@ class ProductController extends FrontEndController
             
             $data['productDetail'] = $productDetail;
 
+            $cateName = Category::find($productDetail->prod_cate);
+            $data['cateName'] = $cateName;
+           // dd($data);
 
             //check giỏ hàng
             $products = \Cart::content();
