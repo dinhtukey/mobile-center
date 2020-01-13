@@ -12,7 +12,7 @@
 
     <!-- Title Page-->
     <title>@yield('title') | Mobile Center</title>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -213,7 +213,7 @@
                                     <a href="{{route('admin.article.add')}}">Thêm tin tức</a>
                                 </li>
                                 <li class="{{\Request::route()->getName() == 'admin.transaction.list' ? 'active' : ''}}">
-                                    <a href="{{route('admin.transaction.list')}}">Danh sách tin tức</a>
+                                    <a href="{{route('admin.transaction.list')}}">Danh sách đơn hàng</a>
                                 </li>
                             </ul>
                         </li>
@@ -425,7 +425,9 @@
         </div>
 
     </div>
+    <!-- Scripts -->
 
+    @yield('scripts')
     <!-- Jquery JS-->
     <script src="vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->

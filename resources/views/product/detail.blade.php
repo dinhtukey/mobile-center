@@ -1,6 +1,12 @@
 @extends('layouts.app')
-@section('title','Danh sách sản phẩm')
+@section('title','Chi tiết sản phẩm')
 @section('content')
+<style>
+	.product-tab-content{
+		overflow: hidden;
+	}
+	
+</style>
 <!-- breadcrumbs area start -->
 <div class="breadcrumbs">
 			<div class="container">
