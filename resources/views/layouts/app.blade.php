@@ -12,7 +12,9 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>@yield('title') | Mobile Center</title>
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<meta name="csrf-token" content="{{ csrf_token() }}"/>
         <!-- Favicon
 		============================================ -->
 		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
@@ -151,6 +153,8 @@
         
    		<!-- main js
 		============================================ -->           
-        <script src="js/main.js"></script>
+		<script src="js/main.js"></script>
+		
+		@yield('scripts')
     </body>
 </html>

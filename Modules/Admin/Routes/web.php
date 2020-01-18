@@ -68,4 +68,9 @@ Route::prefix('admin')->group(function() {
     Route::group(['prefix' => 'user'],function(){
         Route::get('/','AdminUserController@index')->name('admin.user.list');
     });
+
+    //quản lý đánh giá
+    Route::group(['prefix' => 'rating'],function(){
+        Route::get('/','AdminRatingController@index')->name('admin.rating.list');
+    });
 });

@@ -95,7 +95,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h2 class="product-name"><a href="#">{{$product->prod_name}}</a></h2>
+														<h2 class="product-name"><a href="#">{{str_limit($product->prod_name, $limit = 30, $end = '...')}}</a></h2>
 														<p>{!!str_limit($product->prod_description, $limit = 50, $end = '...')!!}</p>
 													</div>
 												</div>

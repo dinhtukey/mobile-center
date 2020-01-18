@@ -195,6 +195,15 @@
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
+                                <i class="fas fa-star"></i>Đánh giá</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li class="{{\Request::route()->getName() == 'admin.rating.list' ? 'active' : ''}}">
+                                    <a href="{{route('admin.rating.list')}}">Danh sách đánh giá</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
                                 <i class="fas fa-book"></i>Tin tức</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li class="{{\Request::route()->getName() == 'admin.article.add' ? 'active' : ''}}">

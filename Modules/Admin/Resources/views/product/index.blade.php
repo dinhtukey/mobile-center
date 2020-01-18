@@ -1,7 +1,11 @@
 @extends('admin::layouts.master')
 @section('title','Danh sách sản phẩm')
 @section('content')
-
+<style>
+    .rating .active{
+        color: #ff9705 !important;
+    }
+</style>
 <div class="section__content section__content--p30">
     <div class="container-fluid">
         <div class="row">
@@ -74,10 +78,29 @@
                         <tbody>
                             <?php $i = 0; ?>
                             @foreach($prodList as $prod)
+                            <?php
+                                $average =0;
+                                if($prod->prod_total_rating){
+                                    $average = round($prod->prod_total_number/$prod->prod_total_rating,2);
+                                }
+                            ?>
                             <?php $i++; ?>
                             <tr class="tr-shadow">
                                 <td><?php echo $i ?></td>
-                                <td>{{$prod->prod_name}}</td>
+                                <td>
+                                    {{$prod->prod_name}}
+                                    <ul>
+                                        <li>
+                                            <span>Đánh giá: </span>
+                                            <span class="rating">
+                                                @for($i=1;$i<=5;$i++)
+                                                    <i class="fa fa-star {{$i<=$average ? 'active' : ''}}" style="color: #999"></i>
+                                                @endfor
+                                            </span>
+                                            <span>{{$average}}</span>
+                                        </li>
+                                    </ul>
+                                </td>
                                 <td>{{number_format($prod->prod_price,0,',','.')}} VND</td>
                                 <td>
                                     <img height="100px" src="{{asset('storage/app/avatar/'.$prod->prod_img)}}">
