@@ -39,17 +39,17 @@
                                 <div class="col-12 col-md-9">
                                     <select required name="art_active" id="select" class="form-control">
                                         <?php
-                                            if($article->art_active){
+                                        if ($article->art_active) {
                                         ?>
-                                        <option selected value="1">Public</option>
-                                        <option value="0">Private</option>
+                                            <option selected value="1">Public</option>
+                                            <option value="0">Private</option>
                                         <?php
-                                            }else{
+                                        } else {
                                         ?>
-                                        <option value="1">Public</option>
-                                        <option selected value="0">Private</option>
+                                            <option value="1">Public</option>
+                                            <option selected value="0">Private</option>
                                         <?php
-                                            }
+                                        }
                                         ?>
                                     </select>
                                 </div>
@@ -122,7 +122,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="copyright">
-                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                    <p>Copyright © 2020 devdinhtu. All rights reserved.</p>
                 </div>
             </div>
         </div>

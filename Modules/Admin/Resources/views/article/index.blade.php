@@ -60,7 +60,7 @@
                                     <img height="100px" src="{{asset('storage/app/avatar/'.$art->art_img)}}">
                                 </td>
                                 <td>
-                                {!!str_limit($art->art_description, $limit = 50, $end = '...')!!}
+                                    {!!str_limit($art->art_description, $limit = 50, $end = '...')!!}
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.article.action',['active',$art->id]) }}" class="badge {{$art->getStatus($art->art_active)['class']}}">{{$art->getStatus($art->art_active)['name']}}
@@ -92,7 +92,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="copyright">
-                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                    <p>Copyright © 2020 devdinhtu. All rights reserved.</p>
                 </div>
             </div>
         </div>

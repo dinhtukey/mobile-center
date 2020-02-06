@@ -1,7 +1,11 @@
 @extends('admin::layouts.master')
 @section('title','Danh sách sản phẩm')
 @section('content')
-
+<style>
+    .rating .active {
+        color: #ff9705 !important;
+    }
+</style>
 <div class="section__content section__content--p30">
     <div class="container-fluid">
         <div class="row">
@@ -19,9 +23,9 @@
                                 <select name="prod_cate" class="form-control">
                                     <option value="">Danh mục</option>
                                     @if(isset($cateList))
-                                        @foreach($cateList as $cate)
-                                            <option value="{{$cate->cate_id}}" {{\Request::get('prod_cate') == $cate->cate_id ? "selected='selected'" : ""}}>{{$cate->cate_name}}</option>
-                                        @endforeach
+                                    @foreach($cateList as $cate)
+                                    <option value="{{$cate->cate_id}}" {{\Request::get('prod_cate') == $cate->cate_id ? "selected='selected'" : ""}}>{{$cate->cate_name}}</option>
+                                    @endforeach
                                     @endif
                                 </select>
                             </div>
@@ -29,9 +33,9 @@
                                 <select name="prod_brand" class="form-control">
                                     <option value="">Thương hiệu</option>
                                     @if(isset($brandList))
-                                        @foreach($brandList as $brand)
-                                            <option value="{{$brand->brand_id}}" {{\Request::get('prod_brand') == $brand->brand_id ? "selected='selected'" : ""}}>{{$brand->brand_name}}</option>
-                                        @endforeach
+                                    @foreach($brandList as $brand)
+                                    <option value="{{$brand->brand_id}}" {{\Request::get('prod_brand') == $brand->brand_id ? "selected='selected'" : ""}}>{{$brand->brand_name}}</option>
+                                    @endforeach
                                     @endif
                                 </select>
                             </div>
@@ -44,14 +48,7 @@
                     <div class="table-data__tool-right">
                         <a href="{{asset('/admin/product/add')}}" class="au-btn au-btn-icon au-btn--green au-btn--small">
                             <i class="zmdi zmdi-plus"></i>Thêm sản phẩm</a>
-                        <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
-                            <select class="js-select2" name="type">
-                                <option selected="selected">Export</option>
-                                <option value="">Option 1</option>
-                                <option value="">Option 2</option>
-                            </select>
-                            <div class="dropDownSelect2"></div>
-                        </div>
+
                     </div>
                 </div>
 
@@ -74,10 +71,28 @@
                         <tbody>
                             <?php $i = 0; ?>
                             @foreach($prodList as $prod)
-                            <?php $i++; ?>
+                            <?php
+                            $average = 0;
+                            if ($prod->prod_total_rating) {
+                                $average = round($prod->prod_total_number / $prod->prod_total_rating, 2);
+                            }
+                            $i++;
+                            ?>
                             <tr class="tr-shadow">
                                 <td><?php echo $i ?></td>
-                                <td>{{$prod->prod_name}}</td>
+                                <td>
+                                    {{$prod->prod_name}}
+                                    <ul>
+                                        <li>
+                                            <span>Đánh giá: </span>
+                                            <span class="rating">
+                                                @for($r=1;$r<=5;$r++) <i class="fa fa-star {{$i<=$average ? 'active' : ''}}" style="color: #999"></i>
+                                                    @endfor
+                                            </span>
+                                            <span>{{$average}}</span>
+                                        </li>
+                                    </ul>
+                                </td>
                                 <td>{{number_format($prod->prod_price,0,',','.')}} VND</td>
                                 <td>
                                     <img height="100px" src="{{asset('storage/app/avatar/'.$prod->prod_img)}}">
@@ -115,7 +130,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="copyright">
-                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                    <p>Copyright © 2020 devdinhtu. All rights reserved.</p>
                 </div>
             </div>
         </div>

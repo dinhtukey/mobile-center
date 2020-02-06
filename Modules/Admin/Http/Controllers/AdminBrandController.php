@@ -12,10 +12,17 @@ use Illuminate\Routing\Controller;
 class AdminBrandController extends Controller
 {
     
-    public function index()
+    public function index(Request $request)
     {
-        $brand = Brand::all();
-        return view('admin::brand.index',compact('brand'));
+        if($request->name){
+            $result = $request->name;
+            $result = str_replace('','%',$result);
+            $brand = Brand::where('brand_name','like','%'.$result.'%')->get();
+        }else{
+            $brand = Brand::get();
+        }
+        $data['listBrand'] = $brand;
+        return view('admin::brand.index',$data);
     }
     public function getAdd(){
         return view('admin::brand.add');
@@ -51,9 +58,22 @@ class AdminBrandController extends Controller
         return redirect('admin/brand')->with('success','Sửa thương hiệu thành công');
     }
 
-    public function getDelete($id){
-        Brand::destroy($id);
-        return back()->with('success','Xóa thương hiệu thành công');
+    public function getAction($action, $id)
+    {
+        if ($action) {
+            $brand = brand::find($id);
+            switch ($action) {
+                case 'delete':
+                    brand::destroy($id);
+                    return back()->with('success', 'Xóa danh mục thành công');
+                    break;
+                case 'active':
+                    $brand->brand_active = $brand->brand_active ? 0 : 1;
+                    break;
+            }
+            $brand->save();
+        }
+        return back();
     }
 }
 

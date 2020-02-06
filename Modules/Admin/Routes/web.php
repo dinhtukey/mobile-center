@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::prefix('admin')->group(function() {
     Route::get('/', 'AdminController@index')->name('admin.home');
 
@@ -22,7 +11,7 @@ Route::prefix('admin')->group(function() {
         Route::get('/edit/{id}','AdminCategoryController@getEdit')->name('admin.category.edit');
         Route::post('/edit/{id}','AdminCategoryController@postEdit');
 
-        Route::get('/delete/{id}','AdminCategoryController@getDelete')->name('admin.category.delete');
+        Route::get('/{action}/{id}','AdminCategoryController@getAction')->name('admin.category.action');
     });
 
     Route::group(['prefix' => 'brand'],function(){
@@ -33,7 +22,7 @@ Route::prefix('admin')->group(function() {
         Route::get('/edit/{id}','AdminBrandController@getEdit')->name('admin.brand.edit');
         Route::post('/edit/{id}','AdminBrandController@postEdit');
 
-        Route::get('/delete/{id}','AdminBrandController@getDelete')->name('admin.brand.delete');
+        Route::get('/{action}/{id}','AdminBrandController@getAction')->name('admin.brand.action');
     });
 
     Route::group(['prefix' => 'product'],function(){
@@ -67,5 +56,10 @@ Route::prefix('admin')->group(function() {
     //quản lý thành viên
     Route::group(['prefix' => 'user'],function(){
         Route::get('/','AdminUserController@index')->name('admin.user.list');
+    });
+
+    //quản lý đánh giá
+    Route::group(['prefix' => 'rating'],function(){
+        Route::get('/','AdminRatingController@index')->name('admin.rating.list');
     });
 });

@@ -4,17 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterColumnProdSaleInTableProducts extends Migration
+class AlterColumnRatingInTableProducts extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->integer('prod_sale')->default(0);
+            $table->integer('prod_total_rating')->default(0)->comment('Tổng số đánh giá');
+            $table->integer('prod_total_number')->default(0)->comment('Tổng số điểm đánh giá');
         });
     }
 
@@ -26,7 +22,8 @@ class AlterColumnProdSaleInTableProducts extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->integer('prod_sale');
+            $table->dropColumn('prod_total_rating');
+            $table->dropColumn('prod_total_number');
         });
     }
 }

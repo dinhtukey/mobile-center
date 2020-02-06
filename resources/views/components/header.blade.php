@@ -4,7 +4,7 @@
             <!-- logo start -->
             <div class="col-md-3 col-sm-12 text-center nopadding-right">
                 <div class="top-logo">
-                    <a href="{{route('home')}}"><img src="img/logo.gif" alt="" /></a>
+                    <a href="{{route('home')}}"><img src="img/test.png" alt="" /></a>
                 </div>
             </div>
             <!-- logo end -->

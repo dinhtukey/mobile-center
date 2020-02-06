@@ -41,3 +41,7 @@ Route::group(['prefix'=>'gio-hang','middleware'=>'CheckLogedIn'],function(){
 
 Route::get('lien-he','ContactController@getContact')->name('get.contact');
 Route::post('lien-he','ContactController@postContact')->name('post.contact');
+
+Route::group(['prefix'=>'ajax','middleware'=>'CheckLogedIn'],function(){
+   Route::post('/danh-gia/{id}','RatingController@saveRating')->name('post.rating');
+}); 

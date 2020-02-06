@@ -27,8 +27,8 @@
                                     <label for="email-input" class=" form-control-label">Ảnh bài viết</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input required id="img" type="file" name="art_img" class="form-control hidden" onchange="changeImg(this)">
-                                    <img id="avatar" class="thumbnail" width="200px" src="images/bg-title-01.jpg">
+                                    <input required id="input_img" type="file" name="art_img" class="form-control hidden" onchange="changeImg(this)">
+                                    <img id="out_img" class="thumbnail" width="200px" src="images/no_image.png">
                                 </div>
                             </div>
 
@@ -112,7 +112,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="copyright">
-                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                    <p>Copyright © 2020 devdinhtu. All rights reserved.</p>
                 </div>
             </div>
         </div>

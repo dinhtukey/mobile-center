@@ -19,6 +19,7 @@
     <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
+    <link rel="shortcut icon" type="image/x-icon" href="images/icon/favicon.png">
     <!-- Bootstrap CSS-->
     <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
@@ -147,7 +148,7 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="{{route('admin.home')}}">
-                    <img src="images/icon/logo.png" alt="Cool Admin" />
+                    <img src="images/icon/test.png" alt="Mobile Center" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -190,6 +191,15 @@
                                 </li>
                                 <li class="{{\Request::route()->getName() == 'admin.product.list' ? 'active' : ''}}">
                                     <a href="{{route('admin.product.list')}}">Danh sách sản phẩm</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-star"></i>Đánh giá</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li class="{{\Request::route()->getName() == 'admin.rating.list' ? 'active' : ''}}">
+                                    <a href="{{route('admin.rating.list')}}">Danh sách đánh giá</a>
                                 </li>
                             </ul>
                         </li>

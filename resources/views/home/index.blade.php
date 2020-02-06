@@ -6,9 +6,15 @@
              <!-- slider -->
 			<div class="bend niceties preview-2">
 				<div id="ensign-nivoslider" class="slides">	
-					<img src="img/slider/home-1/slider1.png" alt="" title="#slider-direction-1"  />
-					<img src="img/slider/home-1/slider2.png" alt="" title="#slider-direction-2"  />
-					<img src="img/slider/home-1/slider3.png" alt="" title="#slider-direction-2"  />
+					<img src="img/slider/home-1/slider11.png" alt="" title="#slider-direction-1"  />
+					<img src="img/slider/home-1/slider22.png" alt="" title="#slider-direction-2"  />
+					<img src="img/slider/home-1/slider33.png" alt="" title="#slider-direction-1"  />
+					<img src="img/slider/home-1/slider4.png" alt="" title="#slider-direction-2"  />
+					<img src="img/slider/home-1/slider5.png" alt="" title="#slider-direction-1"  />
+					<img src="img/slider/home-1/slider6.png" alt="" title="#slider-direction-2"  />
+					<img src="img/slider/home-1/slider7.png" alt="" title="#slider-direction-1"  />
+					<img src="img/slider/home-1/slider8.png" alt="" title="#slider-direction-2"  />
+					<img src="img/slider/home-1/slider9.png" alt="" title="#slider-direction-1"  />
 					
 				</div>
 				<!-- direction 1 -->
@@ -95,7 +101,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h2 class="product-name"><a href="#">{{$product->prod_name}}</a></h2>
+														<h2 class="product-name"><a href="#">{{str_limit($product->prod_name, $limit = 30, $end = '...')}}</a></h2>
 														<p>{!!str_limit($product->prod_description, $limit = 50, $end = '...')!!}</p>
 													</div>
 												</div>
@@ -1010,6 +1016,7 @@
 					<div class="all-singlepost">
 						@foreach($articleNews as $article)
 						<!-- single latestpost start -->
+						
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<div class="single-post" style="margin-bottom: 40px">
 								<div class="post-thumb">
@@ -1022,7 +1029,7 @@
 									<div class="postexcerpt">
 										<h2 class="product-name"><a href="#">{{$article->art_name}}</a></h2>
 										<p></p>
-										<p>{!!str_limit($article->art_description, $limit = 50, $end = '...')!!}</p>
+										<p>{!!str_limit($article->art_description, $limit = 200, $end = '...')!!}</p>
 										<a href="#" class="read-more">Read more</a>
 									</div>
 								</div>
