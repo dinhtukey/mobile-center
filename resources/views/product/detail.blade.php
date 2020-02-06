@@ -132,11 +132,7 @@
 				<div class="product-list-wrapper">
 					<div class="single-product">
 						<div class="product-content">
-<<<<<<< HEAD
 							<h2 class="product-name"><a href="#">Điện thoại {{$productDetail->prod_name}}</a></h2>
-=======
-							<h2 class="product-name"><a href="#">{{$productDetail->prod_name}}</a></h2>
->>>>>>> 59878e1a80017db78dd020f6eb27118b57509d21
 							<div class="rating-price">
 								<div class="pro-rating">
 									<?php
@@ -203,19 +199,11 @@
 					</div>
 					<hr>
 					<div class="component_rating" style="margin-bottom: 20px">
-<<<<<<< HEAD
 						<h4>Đánh giá sản phẩm</h4>
 						<div class="component_rating_content" style="display: flex;align-items: center;border-radius: 5px;border: 1px solid #dedede">
 							<div class="rating_item" style="width: 20%;position: relative">
 								<span class="fa fa-star" style="font-size: 100px;display: block;color: #ff9705;margin: 0 auto;text-align: center"></span>
 								<b style="position: absolute;top: 50%;left: 50%;color: white;font-size: 20px;transform: translateX(-50%) translateY(-50%)">{{$average}}</b>
-=======
-						<h3>Đánh giá sản phẩm</h3>
-						<div class="component_rating_content" style="display: flex;align-items: center;border-radius: 5px;border: 1px solid #dedede">
-							<div class="rating_item" style="width: 20%;position: relative">
-								<span class="fa fa-star" style="font-size: 100px;display: block;color: #ff9705;margin: 0 auto;text-align: center"></span>
-								<b style="position: absolute;top: 50%;left: 50%;color: white;font-size: 20px;transform: translateX(-50%) translateY(-50%)">2.5</b>
->>>>>>> 59878e1a80017db78dd020f6eb27118b57509d21
 							</div>
 
 

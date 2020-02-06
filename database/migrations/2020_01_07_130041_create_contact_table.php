@@ -19,7 +19,7 @@ class CreateContactTable extends Migration
             $table->string('c_email')->nullable();
             $table->string('c_content')->nullable();
             $table->string('c_title')->nullable();
-            $table->string('c_status')->default(0);
+            $table->tinyInteger('c_status')->default(0);
             $table->timestamps();
         });
     }
