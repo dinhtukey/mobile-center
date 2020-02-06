@@ -2,7 +2,11 @@
 @section('title','Danh sách sản phẩm')
 @section('content')
 <style>
+<<<<<<< HEAD
     .rating .active {
+=======
+    .rating .active{
+>>>>>>> 59878e1a80017db78dd020f6eb27118b57509d21
         color: #ff9705 !important;
     }
 </style>
@@ -72,12 +76,21 @@
                             <?php $i = 0; ?>
                             @foreach($prodList as $prod)
                             <?php
+<<<<<<< HEAD
                             $average = 0;
                             if ($prod->prod_total_rating) {
                                 $average = round($prod->prod_total_number / $prod->prod_total_rating, 2);
                             }
                             $i++;
                             ?>
+=======
+                                $average =0;
+                                if($prod->prod_total_rating){
+                                    $average = round($prod->prod_total_number/$prod->prod_total_rating,2);
+                                }
+                            ?>
+                            <?php $i++; ?>
+>>>>>>> 59878e1a80017db78dd020f6eb27118b57509d21
                             <tr class="tr-shadow">
                                 <td><?php echo $i ?></td>
                                 <td>
@@ -86,8 +99,14 @@
                                         <li>
                                             <span>Đánh giá: </span>
                                             <span class="rating">
+<<<<<<< HEAD
                                                 @for($r=1;$r<=5;$r++) <i class="fa fa-star {{$i<=$average ? 'active' : ''}}" style="color: #999"></i>
                                                     @endfor
+=======
+                                                @for($i=1;$i<=5;$i++)
+                                                    <i class="fa fa-star {{$i<=$average ? 'active' : ''}}" style="color: #999"></i>
+                                                @endfor
+>>>>>>> 59878e1a80017db78dd020f6eb27118b57509d21
                                             </span>
                                             <span>{{$average}}</span>
                                         </li>
